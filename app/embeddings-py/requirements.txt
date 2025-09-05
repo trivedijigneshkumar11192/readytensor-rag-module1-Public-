@@ -1,0 +1,7 @@
+flask
+numpy
+sentence_transformers
+torch
+chromadb
+langchain
+langchain-community

@@ -1,0 +1,5 @@
+node_modules/
+app/embeddings-py/venv/
+data/vectorstores/chroma/
+data/vectors/
+profiles/.env

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>RAG Chatbot – Health</title>
+  <!-- absolute path so CSS 100% load ho -->
+  <link rel="stylesheet" href="/ui/css/app.css"/>
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="brand">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm1 15h-2v-2h2Zm0-4h-2V7h2Z"/></svg>
+      <span>RAG Chatbot – Health</span>
+    </div>
+    <div class="status">
+      <span id="apiStatus" class="badge">API: …</span>
+      <span id="kbStatus" class="badge">KB: …</span>
+      <span id="embStatus" class="badge">Emb: …</span>
+      <a href="/index" class="badge link">/index</a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+    <!-- Left: Chat -->
+    <section class="card chat-card">
+      <div class="card-head">
+        <h2>Chatbot</h2>
+        <div class="inline-controls">
+          <select id="lang" class="select">
+            <option>Hinglish</option>
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Gujarati</option>
+            <option>Hindi+English</option>
+            <option>Gujarati+English</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="chat" class="chat-scroll"></div>
+
+      <div class="inputbar">
+        <input id="q" class="input" placeholder="Type your message…" autocomplete="off"/>
+        <button id="send" class="btn">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="m2 21l21-9L2 3v7l15 2l-15 2v7Z"/></svg>
+          <span>Send</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Right: KB / Controls -->
+    <aside class="card side-card">
+      <h2>Health KB (one-time download)</h2>
+      <div class="field">
+        <label for="kbUrl">Public JSONL / JSON URL</label>
+        <input id="kbUrl" class="input" placeholder="https://raw.githubusercontent.com/<user>/<repo>/health.jsonl"/>
+      </div>
+      <div class="row">
+        <button id="btnDownload" class="btn ghost">Download KB</button>
+        <button id="btnCheck" class="btn ghost">Recheck Status</button>
+      </div>
+      <p class="hint">
+        JSONL preferred (1 line = 1 doc). JSON array bhi chalega — server JSONL me convert karega.
+      </p>
+
+      <div class="divider"></div>
+
+      <h3>Quick Tips</h3>
+      <ul class="tips">
+        <li>Ollama models pull: <code>qwen2.5:3b</code>, <code>llama3.2:3b</code>.</li>
+        <li>Emb server: <code>python server.py</code> on <code>127.0.0.1:9500</code>.</li>
+        <li>API: <code>npm start</code> on <code>localhost:8800</code>.</li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- absolute path so JS 100% load ho -->
+  <script src="/ui/js/chat.js"></script>
+</body>
+</html>
